@@ -13,6 +13,7 @@ struct ListNode {
     ListNode *next;
     ListNode(int x) : val(x), next(NULL) {}
 };
+void getList(ListNode *head, int n, int times);
 
 //19.Remove Nth Node From End of List
 ListNode *removeNthFromEnd(ListNode *head, int n);

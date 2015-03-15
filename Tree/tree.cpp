@@ -8,6 +8,27 @@
 
 #include "tree.h"
 
+void CreateBiTree(TreeNode* &T){  //创建树
+    char ch;
+    cin>>ch;
+    if(ch == '#')
+        T = NULL;
+    else{
+        T = new TreeNode(ch);
+        CreateBiTree(T->left);
+        CreateBiTree(T->right);
+    }
+}
+
+void PreOrderTraverse(TreeNode *T){   //前序遍历
+    if (T == NULL)
+        return;
+    
+    cout<<T->val<<", ";
+    PreOrderTraverse(T->left);
+    PreOrderTraverse(T->right);
+}
+
 //100.Same Tree
 bool isSameTree(TreeNode *p, TreeNode *q) {
     if (p&&q){
@@ -22,6 +43,7 @@ bool isSameTree(TreeNode *p, TreeNode *q) {
 }
 
 //101.Symmetric Tree
+//Recurisive
 bool helper(TreeNode *p, TreeNode *q){
     if (!p&&!q)
         return true;
@@ -30,14 +52,51 @@ bool helper(TreeNode *p, TreeNode *q){
     
     if (p->val!=q->val)
         return false;
-    
     return helper(p->left, q->right)&&helper(p->right, q->left);
 }
 
-bool isSymmetric(TreeNode *root) {
+bool isSymmetric_R(TreeNode *root) {
     if (!root)
         return true;
     return helper(root->left, root->right);
+}
+
+//Iterative
+bool isSymmetric_I(TreeNode *root) {
+    if((!root)||(!root->left&&!root->right)){
+        return true;
+    }else if(root->right&&root->left){
+        stack<TreeNode*> nodeStack1;
+        stack<TreeNode*> nodeStack2;
+        nodeStack1.push(root->left);
+        nodeStack2.push(root->right);
+        TreeNode *root1 = nullptr;
+        TreeNode *root2 = nullptr;
+        while (!nodeStack1.empty()&&!nodeStack2.empty()) {
+            root1 = nodeStack1.top();
+            root2 = nodeStack2.top();
+            nodeStack1.pop();
+            nodeStack2.pop();
+            if (root1->val != root2->val)
+                return false;
+            
+            if(root1->right&&root2->left){
+                nodeStack1.push(root1->right);
+                nodeStack2.push(root2->left);
+            }else if((root1->right&&!root2->left)||(!root1->right&&root2->left)){
+                return false;
+            }
+            
+            if (root1->left&&root2->right){
+                nodeStack1.push(root1->left);
+                nodeStack2.push(root2->right);
+            }else if((root1->left&&!root2->right)||(!root1->left&&root2->right)){
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
 }
 
 
@@ -74,7 +133,6 @@ bool isBalanced(TreeNode *root) {
     return balance;
 }
 
-//
 
 
 

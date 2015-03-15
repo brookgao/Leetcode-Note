@@ -8,6 +8,22 @@
 
 #include "list.h"
 
+void getList(ListNode *head, int n, int times){   //创建链表
+    head->next = NULL;
+    ListNode *tmp = head;
+    for (int i = 1; i<n; i++) {
+        for (int j=0; j<times; j++) {
+            ListNode *newNode = new ListNode(i);
+            tmp->next = newNode;
+            tmp = newNode;
+        }
+    }
+    tmp->next = NULL;
+}
+
+
+
+
 //19.Remove Nth Node From End of List
 ListNode *removeNthFromEnd(ListNode *head, int n) {
     ListNode *fast = head;

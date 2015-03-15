@@ -7,10 +7,13 @@
 //
 
 #include "Header.h"
+#include "Tree/tree.h"
 
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    TreeNode *BiTree;
+    CreateBiTree(BiTree);
+    PreOrderTraverse(BiTree);
+    cout<<std::endl;
     return 0;
 }
