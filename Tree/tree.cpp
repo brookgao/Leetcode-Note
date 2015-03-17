@@ -9,9 +9,9 @@
 #include "tree.h"
 
 void CreateBiTree(TreeNode* &T){  //创建树
-    char ch;
+    int ch;
     cin>>ch;
-    if(ch == '#')
+    if(ch == 0)
         T = NULL;
     else{
         T = new TreeNode(ch);
@@ -131,6 +131,18 @@ bool isBalanced(TreeNode *root) {
     if(depth == -1)
         balance = false;
     return balance;
+}
+
+
+
+//112.Path Sum
+
+bool hasPathSum(TreeNode *root, int sum) {
+    if (!root)
+        return false;
+    if (root->val == sum && !root->left&&!root->right)
+        return true;
+    return hasPathSum(root->left, sum-root->val)||hasPathSum(root->right, sum-root->val);
 }
 
 

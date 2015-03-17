@@ -15,5 +15,6 @@ int main(int argc, const char * argv[]) {
     CreateBiTree(BiTree);
     PreOrderTraverse(BiTree);
     cout<<std::endl;
+    bool hasSum = hasPathSum(BiTree, 20);
     return 0;
 }

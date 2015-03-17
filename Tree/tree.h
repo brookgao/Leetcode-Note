@@ -29,3 +29,6 @@ int maxDepth(TreeNode *root);
 
 //110.Balanced Binary Tree
 bool isBalanced(TreeNode *root);
+
+//112.Path Sum
+bool hasPathSum(TreeNode *root, int sum);
