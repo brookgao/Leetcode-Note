@@ -32,3 +32,6 @@ bool isBalanced(TreeNode *root);
 
 //112.Path Sum
 bool hasPathSum(TreeNode *root, int sum);
+
+//113.Path Sum II
+vector<vector<int> > pathSum(TreeNode *root, int sum);

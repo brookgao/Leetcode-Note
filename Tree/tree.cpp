@@ -145,6 +145,26 @@ bool hasPathSum(TreeNode *root, int sum) {
     return hasPathSum(root->left, sum-root->val)||hasPathSum(root->right, sum-root->val);
 }
 
+//113.Path Sum II
+void helperPathSum(vector<vector<int>> &pathes, vector<int> path, TreeNode *root, int sum){
+    if(!root)
+        return;
+    
+    path.push_back(root->val);
+    
+    if (!root->left&&!root->right&&(root->val == sum)){
+        pathes.push_back(path);
+        return;
+    }
+    helperPathSum(pathes, path, root->left, sum-root->val);
+    helperPathSum(pathes, path, root->right, sum-root->val);
+}
 
+vector<vector<int>> pathSum(TreeNode *root, int sum) {
+    vector<vector<int>> pathes;
+    vector<int> path;
+    helperPathSum(pathes, path,root, sum);
+    return pathes;
+}
 
 

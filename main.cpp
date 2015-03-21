@@ -15,6 +15,13 @@ int main(int argc, const char * argv[]) {
     CreateBiTree(BiTree);
     PreOrderTraverse(BiTree);
     cout<<std::endl;
-    bool hasSum = hasPathSum(BiTree, 20);
+    vector<vector<int>> re= pathSum(BiTree, 11);
+    
+    for (auto v:re) {
+        for (auto e:v)
+            cout<<e<<", ";
+        
+        cout<<endl;
+    }
     return 0;
 }
