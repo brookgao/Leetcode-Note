@@ -8,20 +8,17 @@
 
 #include "Header.h"
 #include "Tree/tree.h"
+#include "string.h"
+#include "array.h"
+using namespace std;
+
 
 
 int main(int argc, const char * argv[]) {
-    TreeNode *BiTree;
-    CreateBiTree(BiTree);
-    PreOrderTraverse(BiTree);
-    cout<<std::endl;
-    vector<vector<int>> re= pathSum(BiTree, 11);
+//    TreeNode *root;
+//    CreateBiTree(root);
     
-    for (auto v:re) {
-        for (auto e:v)
-            cout<<e<<", ";
-        
-        cout<<endl;
-    }
-    return 0;
+    vector<int> nums = {4,5,6,1,2,3};
+    int res =  findMin(nums);
+    cout<<res<<endl;
 }

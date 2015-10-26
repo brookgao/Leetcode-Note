@@ -141,6 +141,13 @@ int searchInsert(int A[], int n, int target) {
     return index;
 }
 
+//36.Contains Duplicate
+bool containsDuplicate(vector<int>& nums) {
+    std::sort(nums.begin(), nums.end());
+    auto new_iter = std::unique(nums.begin(), nums.end());
+    return new_iter != nums.end();
+}
+
 //66.Plus One
 vector<int> plusOne(vector<int> &digits) {
     auto end = digits.end()-1;
@@ -269,3 +276,87 @@ int maxProfit(vector<int> &prices) {
     return maxprofit;
 }
 
+//122.productExceptSelf
+vector<int> productExceptSelf(vector<int>& nums) {
+    vector<int> result;
+    int product = 1;
+    int zeroNum = 0;
+    int zeroPos = 0;
+    for (int i = 0 ; i<nums.size(); i++) {
+        if (nums[i] == 0) {
+            zeroNum++;
+            zeroPos = i;
+            continue;
+        }
+        product = product*nums[i];
+    }
+    
+    for(int i = 0; i<nums.size();i++){
+        switch (zeroNum) {
+            case 0:
+                result.push_back(product/nums[i]);
+                break;
+            case 1:
+                if (i == zeroPos) {
+                    result.push_back(0);
+                }else{
+                    result.push_back(product);
+                }
+                break;
+            default:
+                result.push_back(0);
+                break;
+        }
+    }
+    return result;
+    
+}
+
+//169. Majority Element
+int majorityElement(vector<int>& nums) {
+    auto n = nums.size();
+    std::map<int, int> counts;
+    for (int i = 0 ; i < n; i++) {
+        if (++counts[nums[i]] > n/2) {
+            return nums[i];
+        }
+    }
+    
+    return NULL;
+}
+
+
+//53.Maximum Subarray
+
+int maxSubArray(vector<int>& nums) {
+    int maxSum = INT16_MIN;
+    int current = 0;
+    size_t n = nums.size();
+    
+    for (int i = 0; i < n; i++) {
+        current = std::max(current, 0) + nums[i]; //如果当前的sum比0小，就取0+nums[i]
+        if (current > maxSum) {
+            maxSum = current;
+        }
+    }
+    return maxSum;
+}
+
+//153. Find Minimum in Rotated Sorted Array
+int findMin(vector<int>& nums) {
+    int left = 0;
+    int right = (int)nums.size()-1;
+    int mid;
+    
+    while (left < right) {
+        mid = (left + right) /2;
+        
+        if (nums[mid] > nums[right]) {
+            left = mid + 1;
+        }else{
+            right = mid;
+        }
+    }
+    
+    return nums[right];
+}

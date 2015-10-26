@@ -133,9 +133,19 @@ bool isBalanced(TreeNode *root) {
     return balance;
 }
 
+//111.Minimum Depth of Binary Tree
+int minDepth(TreeNode* root) {
+    if (!root) return 0;
+    if (!root->left)
+        return minDepth(root->right)+1;
+    
+    if (!root->right)
+        return minDepth(root->left)+1;
+    
+    return std::min(minDepth(root->left), minDepth(root->right))+1;
+}
 
-
-//112.Path Sum
+//112.Path Sumtab
 
 bool hasPathSum(TreeNode *root, int sum) {
     if (!root)

@@ -38,3 +38,6 @@ vector<int> getRow(int rowIndex);
 
 //121.Best Time to Buy and Sell Stock
 int maxProfit(vector<int> &prices);
+
+//153. Find Minimum in Rotated Sorted Array
+int findMin(vector<int>& nums);

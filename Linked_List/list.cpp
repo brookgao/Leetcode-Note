@@ -226,6 +226,23 @@ ListNode *partition(ListNode *head, int x) {
     return newHead->next;
 }
 
+//ListNode *partition_two(ListNode *head, int x) {
+////    ListNode *p1 = head;
+////    while (p1->next&&p1->val<x) {
+////        p1 = p1->next;
+////    }
+////    
+////    ListNode *p2 = p1->next;
+////    ListNode *nextNode;
+//////    while (p2) {
+//////        if (p2->val < x) {
+//////            
+//////        }else{
+//////            p2 = p2->next;
+//////        }
+//////    }
+//}
+
 
 //.92Reverse Linked List II
 ListNode *reverseBetween(ListNode *head, int m, int n) {
@@ -327,3 +344,15 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
     }
     return NULL;
 }
+
+//237	Delete Node in a Linked List
+void deleteNode(ListNode* node) {
+    ListNode *nextNode = node->next;
+    node->val = nextNode->val;
+    node->next = nextNode->next;
+    
+    delete nextNode;
+}
+
+
+

@@ -33,6 +33,33 @@ bool isValid(string s) {
     return valid;
 }
 
+//22.Generate Parentheses
+
+//vector<string> generateParenthesis(int n) {
+//    std::string shorterStr =
+//    shorterStr.append(<#const std::basic_string<char> &__str#>)
+//    
+//}
+
+//58.Length of Last Word
+int lengthOfLastWord(string s) {
+    auto iter = s.begin();
+    int lastLen = 0;
+    bool hasSpace = false;
+    while (iter != s.end()) {
+        if (*iter != ' '){
+            lastLen = hasSpace == true? 0:lastLen+1;
+        }else{
+            hasSpace = true;
+        }
+        
+        iter++;
+    }
+    return lastLen;
+    
+}
+
+
 //71.Simplify Path
 string simplifyPath(string path) {
     auto len = path.size();
@@ -96,8 +123,67 @@ string simplifyPath(string path) {
     return re;
 }
 
+//14.Longest Common Prefix
+string longestCommonPrefix(vector<string>& strs) {
+    if (strs.empty())
+        return "";
+    
+    std::string result = strs[0];
+    
+    for (int i = 1; i < strs.size(); i ++) {
+        
+        while (strs[i].find(result) != 0 && result.length() > 0) {
 
+            result = result.substr(0, result.length()-1);
+        }
+        
+        if (result.length() == 0) {
+            return NULL;
+        }
+        
+    }
 
+    return result;
+}
+
+//67.Add Binary
+string addBinary(string a, string b) {
+    int indexA = static_cast<int>(a.size())-1;
+    int indexB = static_cast<int>(b.size())-1;
+    stack<int> numStack;
+    string result;
+    
+    int preSum = 0;
+    int pa;
+    int pb;
+    while (indexA >=0 || indexB >=0) {
+        pa = 0;
+        pb = 0;
+        if (indexA >= 0) pa = a[indexA] - '0';
+        if (indexB >= 0) pb = b[indexB] - '0'; //从末尾开始相加
+        
+        cout<<"pa:"<<pa<<",pb:"<<pb<<",preSum:"<<preSum<<endl;
+        int currentSum = pa+pb+preSum;
+        int judge = currentSum%2;  //前一位和当前和相加
+        cout<<"push:"<<judge<<endl;
+        numStack.push(judge);
+
+        preSum = 0;
+        if (currentSum > 1) preSum = 1;
+        
+        indexA--;
+        indexB--;
+    }
+    
+    if (preSum) numStack.push(1); //如果到头还有1，就进一位
+    
+    while (!numStack.empty()) {
+        result += std::to_string(numStack.top());
+        numStack.pop();
+    }
+    cout<<result<<endl;
+    return result;
+}
 
 
 
